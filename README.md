@@ -1,5 +1,7 @@
 # Hands-on Express XSS Reflected
 
+## Set up
+
 * Install nodejs
 
 * Install dependencies
@@ -18,10 +20,20 @@ $ npm start
 
 * Open http://localhost:3000
 
-* Having fun with XSS attacks such as:
+
+## Hack
+
+Having fun with XSS attacks such as:
 
 ````
 <script>alert("test")</script>
 ````
 
-* Try to fix vulnerability
+````
+<script>alert(document.cookie)</script>
+````
+
+
+## Fix
+
+Try to fix vulnerability and prevent XSS Attacks

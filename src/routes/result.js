@@ -8,7 +8,11 @@ router.get('/', function(req, res, next) {
   if(typeof req.query.search != 'undefined'){
     search = req.query.search;
   }
-    
+  
+  //search = search.replace("<script>", "");
+  //search = search.replace(/<script>/g, "");
+  //while (search != (search = search.replace(/<script>/g, "")));
+
   res.send(`Your search - <b> ${search} </b> - did not match any documents.`);
 });
 
