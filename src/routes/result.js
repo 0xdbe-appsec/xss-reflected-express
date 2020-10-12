@@ -9,9 +9,9 @@ router.get('/', function(req, res, next) {
     search = req.query.search;
   }
   
-  //search = search.replace("<script>", "");
-  //search = search.replace(/<script>/g, "");
-  //while (search != (search = search.replace(/<script>/g, "")));
+  // Begin XSS protection
+  
+  // End XSS protection
 
   res.send(`Your search - <b> ${search} </b> - did not match any documents.`);
 });
