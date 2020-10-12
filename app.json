@@ -1,7 +1,7 @@
 {
   "name": "Hands-on Express XSS Reflected",
   "description": "This application is a demonstration prototype just to show how to perform XSS attacks.",
-  "repository": "https://github.com/0xdbe/Hands-on-Express-XSS-Reflected",
+  "repository": "https://github.com/0xdbe/Hands-on-Express-XSS-Reflected/tree/master/src",
   "keywords": ["node", "express", "xss"]
 } 
 
