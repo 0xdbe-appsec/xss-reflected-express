@@ -2,12 +2,6 @@
 
 ## Set up
 
-### Deploy on Heroku
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/0xdbe/Hands-on-Express-XSS-Reflected)
-
-### Install locally
-
 * Install nodejs
 
 * Install dependencies
@@ -19,7 +13,7 @@ $ npm install
 * run application
 
 ```console
-$ npm start
+$ npm run start:dev
 ```
 
 * Make sure that TCP/3000 is allowed on your firewall
@@ -100,29 +94,21 @@ search = search.replace("<script>", "");
 search = search.replace(/<script>/g, "");
 ````
 
-### Round 3
-
-- Bypass
-
-````
-<sc<script>riPt>alert("test")</script>
-````
-
-- Fix with a recursive Filter
+- Fix with recursive filtering
 
 ````
 while (search != (search = search.replace(/<script>/g, "")));
 ````
 
-### Round 4
+### Round 3
 
-- Bypass
+- Bypass using upper case
 
 ````
-<sC<script>riPt>alert("test")</script>
+<sc<script>riPt>alert("test")</script>
 ````
 
-- Recursive and case insentive filter
+- Fix with a recursive and case insentive filtering
 
 ````
 while (search != (search = search.replace(/<script>/i, "")));
@@ -139,6 +125,11 @@ while (search != (search = search.replace(/<script>/i, "")));
 - Fix: remplace special char by html entities
 
 ````
+search = search.replace(/\(/g, "&#40;");
+search = search.replace(/\)/g, "&#41;;");
+````
+
+````
 search = search.replace(/</g, "&lt;");
 search = search.replace(/\>/g, "&gt;");
 ````
@@ -148,10 +139,21 @@ search = search.replace(/\>/g, "&gt;");
 - Bypass using HTML decimal entity
 
 ````
+<iframe src="javascript:alert('XSS');">
+````
+
+- Why ? output encoding / escaping must done according a context (HTML, Javascript, CSS, ...)
+
+
+## Encoded XSS
+
+- HTML Decimal entity
+
+````
 <img src=x onerror="&#106&#97&#118&#97&#115&#99&#114&#105&#112&#116&#58&#97&#108&#101&#114&#116&#40&#39&#88&#83&#83&#39&#41">
 ````
 
-- Bypass using JS encoding
+- UTF16
 
 ````
 <img src="x" onerror="\u006A\u0061\u0076\u0061\u0073\u0063\u0072\u0069\u0070\u0074:\u0061\u006C\u0065\u0072\u0074('XSS')">

@@ -10,10 +10,10 @@ router.get('/', function(req, res, next) {
   }
   
   // Begin XSS protection
-  
+
   // End XSS protection
 
-  res.send(`Your search - <b> ${search} </b> - did not match any documents.`);
+  res.send(`Your search - ${search} - did not match any documents.`);
 });
 
 module.exports = router; 
